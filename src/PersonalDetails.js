@@ -10,9 +10,21 @@ class PersonalDetails extends Component {
             email: "",
             about: "",
         }
+
+        this.handleInputChange = this.handleInputChange.bind(this);
+    }
+
+    handleInputChange(event) {
+        const name = event.target.name;
+        const value = event.target.value;
+        this.setState({
+            [name]: value,
+        })
     }
 
     render() {
+        const { name, pronouns, email, about } = this.state;
+
         return(
             <div>
                 <h1>Personal Details</h1>
@@ -23,6 +35,9 @@ class PersonalDetails extends Component {
                     <input 
                         type="text"
                         id="nameInput"
+                        name="name"
+                        value={name}
+                        onChange={this.handleInputChange}
                     />
                     <label htmlFor="pronounsInput">
                         Pronouns
@@ -30,6 +45,9 @@ class PersonalDetails extends Component {
                     <input 
                         type="text"
                         id="pronounsInput"
+                        name="pronouns"
+                        value={pronouns}
+                        onChange={this.handleInputChange}
                     />   
                     <label htmlFor="emailInput">
                         Email
@@ -37,12 +55,24 @@ class PersonalDetails extends Component {
                     <input
                         type="email"
                         id="emailInput"
+                        name="email"
+                        value={email}
+                        onChange={this.handleInputChange}
                     />
                     <label htmlFor="aboutInput">
                         About
                     </label> 
-                    <textarea />
-                </form>              
+                    <textarea 
+                        id="aboutInput"
+                        name="about"
+                        value={about}
+                        onChange={this.handleInputChange} 
+                    />
+                </form>    
+                <p>{name}</p>
+                <p>{pronouns}</p>
+                <p>{email}</p>          
+                <p>{about}</p>
             </div>
         );
     }
